@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+
+  frontend:
+    container_name: dcb_frontend
+    build:
+      context: .
+    image: dcb_frontend
+    ports:
+      - 80:3000
+    env_file:
+      - ".env.local"
