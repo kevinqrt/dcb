@@ -1,5 +1,5 @@
 "use client"
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState } from 'react';
 import DarkModeButton from './themehandler/darkmode';
 import MessageInput from './messageinput';
 import { buildMessages } from '../utils/utils';
