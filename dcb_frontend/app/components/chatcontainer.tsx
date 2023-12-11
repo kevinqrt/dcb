@@ -1,12 +1,12 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
+"use client"
+import React, {useEffect, useRef, useState } from 'react';
 import DarkModeButton from './themehandler/darkmode';
+import MessageInput from './messageinput';
+import { buildMessages } from '../utils/utils';
 
-interface ChatContainerProps {
-  children: ReactNode;
-  input: ReactNode;
-}
 
-const ChatContainer: React.FC<ChatContainerProps> = ({ children, input }) => {
+const ChatContainer: React.FC = () => {
+  const [messages, setMessages] = useState<Array<string>>([]);
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null); 
 
@@ -16,7 +16,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ children, input }) => {
 
   useEffect(() => {
     scrollToBottom()
-  }, [children]);
+  }, [messages]);
 
   return (
     <div className="flex flex-col h-screen">
@@ -25,10 +25,10 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ children, input }) => {
         <DarkModeButton />
       </div>
       <div className="mt-auto overflow-auto">
-        {children}
+        {buildMessages(messages)}
         <div ref={messagesEndRef} />
       </div>
-      <div>{input}</div>
+      <div>{<MessageInput setMessages={setMessages} messages={messages}/>}</div>
     </div>
   );
 }
