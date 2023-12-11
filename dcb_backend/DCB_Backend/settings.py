@@ -35,10 +35,8 @@ ALLOWED_HOSTS = ["*"] if DEBUG else []
 #CORS_ALLOW_ALL_ORIGINS = DEBUG
 
 CORS_ALLOWED_ORIGINS = [
-    "dcb_frontend://dcb_frontend:3000",
-    "dcb_frontend://dcb_frontend:8000",
-    "dcb_backend://dcb_backend:3000",
-    "dcb_backend://dcb_backend:8000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -46,10 +44,8 @@ CORS_ALLOW_CREDENTIALS = True
 #CSRF_COOKIE_SAMESITE = 'None'
 
 CSRF_TRUSTED_ORIGINS = [
-    "dcb_frontend://dcb_frontend:3000",
-    "dcb_frontend://dcb_frontend:8000",
-    "dcb_backend://dcb_backend:3000",
-    "dcb_backend://dcb_backend:8000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 # Application definition
