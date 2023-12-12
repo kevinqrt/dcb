@@ -25,7 +25,8 @@ services:
     env_file:
       - ".env"
     volumes:
-      - data:/app
+      - vectorstore:/app/VECTORSTORE
+      - uploads:/app/uploads
     depends_on:
       - database
       - redis
@@ -35,7 +36,7 @@ services:
   database:
     image: postgres
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - database:/var/lib/postgresql/data
     env_file:
       - ".env"
     environment:
@@ -47,14 +48,16 @@ services:
 
   redis:
     image: 'redis/redis-stack-server:7.2.0-v6'
-    ports:
-      - '6379:6379'
+    expose:
+      - "6379"
     networks:
       - dcb_backend_network
 
 
 volumes:
-  data:
+  uploads:
+  vectorstore:
+  database:
 
 networks:
   dcb_backend_network:
