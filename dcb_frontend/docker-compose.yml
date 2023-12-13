@@ -17,10 +17,10 @@ services:
   dcb_frontend:
     container_name: dcb_frontend
     build:
-      context: /.
+      context: .
     image: dcb_frontend
     env_file:
-      - ".env.local"
+      - ".env.production"
     command: ["npm", "start"]
     networks:
       - dcb_frontend_network

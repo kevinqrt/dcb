@@ -23,7 +23,7 @@ services:
     expose:
       - "8000"
     env_file:
-      - ".env"
+      - ".env.production"
     volumes:
       - vectorstore:/app/${VECTORSTOREPATH}
       - uploads:/app/${UPLOADPATH}
@@ -38,7 +38,7 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
     env_file:
-      - ".env"
+      - ".env.production"
     environment:
       - POSTGRES_NAME=${DBNAME}
       - POSTGRES_USER=${DBUSER}
