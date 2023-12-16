@@ -30,27 +30,13 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ["DEBUG"] == "False" else True
 
-ALLOWED_HOSTS = ["*"] if DEBUG else []
+ALLOWED_HOSTS = ["*"] if DEBUG else os.environ["ALLOWED_HOSTS"].split()
 
-#CORS_ALLOW_ALL_ORIGINS = DEBUG
-
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000",
-    "http://localhost:3000",
-    "http://localhost:8000",
-]
+CORS_ALLOWED_ORIGINS = os.environ["CORS_ALLOWED_ORIGINS"].split()
 
 CORS_ALLOW_CREDENTIALS = True
 
-#CSRF_COOKIE_SAMESITE = 'None'
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000",
-    "http://localhost:3000",
-    "http://localhost:8000",
-]
+CSRF_TRUSTED_ORIGINS = os.environ["CSRF_TRUSTED_ORIGINS"].split()
 
 # Application definition
 

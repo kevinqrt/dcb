@@ -1,4 +1,3 @@
-"use client"
 import React, { useState, ChangeEvent, KeyboardEvent, SetStateAction, Dispatch } from 'react';
 import { IoSend } from "react-icons/io5";
 import { askQuestion, onAnswer, onQuestion, start_new_conversation } from '../utils/utils';
