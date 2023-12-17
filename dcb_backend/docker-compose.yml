@@ -5,14 +5,27 @@ services:
   nginx:
     image: nginx:1.23.3-alpine
     container_name: "nginx_backend"
+    environment:
+      - DOMAIN=${DOMAIN}
     ports:
-      - 88:88
+      - 80:80
+      - 443:443
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/templates/:/etc/nginx/templates
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     depends_on:
       - dcb_backend
     networks:
       - dcb_backend_network
+  
+  certbot:
+    image: certbot/certbot
+    container_name: "certbot_backend"
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email ${CERTBOT_EMAIL} -d ${DOMAIN} --agree-tos
 
   dcb_backend:
     build:
