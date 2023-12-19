@@ -4,7 +4,7 @@ from document.models import DocumentModel
 
 
 class UploadSerializer(serializers.Serializer):
-    files = serializers.ListField(allow_empty=False ,child = FileField(max_length=100000, allow_empty_file=False, use_url=False
+    files = serializers.ListField(allow_empty=False ,child = FileField(max_length=1000, allow_empty_file=False, use_url=False
         )
     )
 
