@@ -6,6 +6,7 @@ import { FaMoon, FaSun } from 'react-icons/fa'
 const DarkModeButton = () => {
   const [mounted, setMounted] = useState(false)
   const { setTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
@@ -14,8 +15,6 @@ const DarkModeButton = () => {
   if (!mounted) {
     return null
   }
-
-  const { resolvedTheme } = useTheme()
 
   return (
     <button className='absolute right-4 top-4' onClick={e => resolvedTheme === 'dark' ? setTheme('light') : setTheme('dark')}>
