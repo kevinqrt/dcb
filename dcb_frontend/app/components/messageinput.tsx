@@ -29,7 +29,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ messages, setMessages }) =>
   };
 
   return (
-    <div className="bg-transparent flex w-screen p-2">
+    <div className="bg-transparent flex w-screen p-2 bottom-0">
       <input
         type="text"
         placeholder="Ask a question..."
