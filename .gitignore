@@ -145,3 +145,5 @@ GitHub.sublime-settings
 
 dcb_frontend/.env
 dcb_frontend/certbot/
+dcb_backend/certbot/
+dcb_frontend/.vscode/launch.json

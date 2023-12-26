@@ -19,7 +19,7 @@ const ChatContainer: React.FC = () => {
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-[calc(100dvh)] h-screen">
+    <div className="flex flex-col h-[calc(100dvh)]">
       <div className='bg-1 dark:bg-1-dark'>
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-white text-white p-5">DocumentChatBot</h1>
         <DarkModeButton />
