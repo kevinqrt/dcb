@@ -15,7 +15,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ messages, setMessages }) =>
   };
 
   const handleSendMessage = () => {
-    if (message.trim() !== '') {
+    if (message.trim() !== '' && messages.length % 2 != 1) {
       askQuestion(setMessages, message, start_new_conversation(messages) ,onAnswer, onQuestion);
       setMessage('');
     }

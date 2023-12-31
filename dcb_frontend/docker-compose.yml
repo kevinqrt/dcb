@@ -3,6 +3,7 @@ version: "3.8"
 services:
 
   nginx:
+    restart: unless-stopped
     image: nginx:1.23.3-alpine
     container_name: "nginx"
     environment:
@@ -28,6 +29,7 @@ services:
     command: certonly --webroot -w /var/www/certbot --force-renewal --email ${CERTBOT_EMAIL} -d ${DOMAIN} --agree-tos
 
   dcb_frontend:
+    restart: unless-stopped
     container_name: dcb_frontend
     build:
       context: .

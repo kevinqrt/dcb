@@ -6,18 +6,23 @@ import MessageWaiting from "../components/messagewaiting";
 export const getAnswer = async (question: string, start_new_conversation: Boolean) => {
 
   const url: URL = new URL(`${process.env.NEXT_PUBLIC_API_URL}/chat/ask`);
+  var response: Response;
 
-  const response: Response = await fetch(url, {
-    credentials: 'include',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ 
-      "question": question, 
-      "new_conversation": start_new_conversation 
-    }),
-  });
+  try {
+    response = await fetch(url, {
+      credentials: 'include',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        "question": question, 
+        "new_conversation": start_new_conversation 
+      }),
+    });
+  } catch (error) {
+    response = Response.error();
+  }
 
   return response;
 }
@@ -28,14 +33,18 @@ export const askQuestion = async (
   onAnswer: (setMessages: Dispatch<SetStateAction<string[]>>, answer: string, new_conversation: Boolean) => any,
   onQuestion: (setMessages: Dispatch<SetStateAction<string[]>>, question: string) => any) => {
 
-  onQuestion(setMessages, question);
 
-  const response: Response = await getAnswer(question, start_new_conversation);
 
-  if (response.ok) {
-    const responseBody: { response: string, new_conversation: Boolean } = await response.json();
-    onAnswer(setMessages, responseBody.response, responseBody.new_conversation);
-  }
+    onQuestion(setMessages, question);
+
+    const response: Response = await getAnswer(question, start_new_conversation);
+
+    if (response.ok) {
+      const responseBody: { response: string, new_conversation: Boolean } = await response.json();
+      onAnswer(setMessages, responseBody.response, responseBody.new_conversation);
+    } else {
+      onAnswer(setMessages, "Sorry, your answer got lost somewhere on the way... :(", false);
+    }
 
 }
 
