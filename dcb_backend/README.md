@@ -2,7 +2,7 @@
 
 ## Setup local environment
 1.  Setup python virtual environment:
-    - Go to the root directory of the project and run: `python -m venv venv`
+    - Go to the root directory of the project and run: `python3.11.5 -m venv venv`
     - Open a terminal inside the venv and install requirements.txt run: `pip install -r requirements.txt`
 1.  Set .env variables
     - copy the file `.env.example` and rename it to `.env`
