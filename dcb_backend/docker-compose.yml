@@ -3,6 +3,7 @@ version: "3.8"
 services:
 
   nginx:
+    restart: unless-stopped
     image: nginx:1.23.3-alpine
     container_name: "nginx_backend"
     environment:
@@ -28,6 +29,7 @@ services:
     command: certonly --webroot -w /var/www/certbot --force-renewal --email ${CERTBOT_EMAIL} -d ${DOMAIN} --agree-tos
 
   dcb_backend:
+    restart: unless-stopped
     build:
       context: .
     image: dcb_backend
@@ -47,6 +49,7 @@ services:
       - dcb_backend_network
   
   database:
+    restart: unless-stopped
     image: postgres
     volumes:
       - database:/var/lib/postgresql/data
@@ -60,6 +63,7 @@ services:
       - dcb_backend_network
 
   redis:
+    restart: unless-stopped
     image: 'redis/redis-stack-server:7.2.0-v6'
     expose:
       - "6379"
