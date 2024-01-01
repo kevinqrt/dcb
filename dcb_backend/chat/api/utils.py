@@ -19,7 +19,7 @@ class Helper:
         )
         conversation_chain = ConversationalRetrievalChain.from_llm(
             llm=config.LLM,
-            retriever=config.VECTORSTORE.as_retriever(),
+            retriever=config.VECTORSTORE.as_retriever(search_kwargs={"k": 2}),
             memory=memory,
         )
         response = conversation_chain({"question": user_question}).get("answer")
